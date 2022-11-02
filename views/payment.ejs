@@ -11,17 +11,17 @@
         }
         button {
 		position: relative;
-        left:230px; 
+        left:230px;
         top:50px;
 		}
         
     </style>
 </head>
 <body>
-<img src="images/header.png" width="100%"/>
+<a href="/home"><img src="/images/header.png" width="100%"/></a>
 <form method="post" action="/orderComplete">
 
-<h2>Payment</h2> 
+<h2>Payment</h2>
 
 
 <div class="bootstrap">
@@ -61,8 +61,8 @@
             </div>
           </div>
         </fieldset>
-        
-        
+
+
 </div>
 <input type="text" name="details" style="display: none;" value=<%= JSON.stringify(details) %>></input>
 <button type="submit" name="createOrder" class="btn btn-primary">Make Payment</button>
