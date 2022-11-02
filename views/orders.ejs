@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+<img src="/images/header.png" width="100%"/>
+<div class="table-data">
+    <h2 style="text-align: center;">Orders</h2>
+    <table border="1" class="table table-striped">
+        <tr>
+            <th>S.N</th>
+            <th>OrderId</th>
+            <th>OrderDate</th>
+            <th>SenderId</th>
+            <th>RecipientId</th>
+            <th>ItemName</th>
+            <th>ItemCategory</th>
+            <th>Weight</th>
+            <th>Length</th>
+            <th>Breadth</th>
+            <th>Height</th>
+            <th>IsFragile</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+
+        <%
+        if(ordersData.length!=0){
+        var i=1;
+        ordersData.forEach(function(data){
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=data.OrderId %></td>
+            <td><%=data.OrderDate %></td>
+            <td><%=data.SenderId %></td>
+            <td><%=data.RecipientId %></td>
+            <td><%=data.ItemName %></td>
+            <td><%=data.ItemCategory %></td>
+            <td><%=data['WeightofItem (in Kg)'] %></td>
+            <td><%=data['LengthofItem (ft)'] %></td>
+            <td><%=data['BreadthofItem (ft)'] %></td>
+            <td><%=data['HeightofItem (ft)'] %></td>
+            <td><%=data.IsFragile %></td>
+            <td><a href="/order/modify/<%=data.OrderId%>">Modify</a></td>
+            <td><a href="/order/cancel/<%=data.OrderId%>">Cancel</a></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+        <tr>
+            <td colspan="7">No Data Found</td>
+        </tr>
+        <% } %>
+    </table>
+</div>
+</body>
+</html>

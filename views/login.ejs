@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        button {
+		position: relative;
+        left:10px; 
+        top:2px;
+		}
+        form {
+            text-align: center;
+        }
+        .center {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+    </style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+<img src="/images/header.png" width="100%"/>
+<form method="POST" action="/home1/">
+    <h2>Login</h2>
+    <div class="container">
+    <table class="center">
+    <tr>
+        <td><label>Username : </label></td>
+        <td><input type="text" placeholder="Enter Username" name="username" required></td>
+    </tr>
+    <tr>
+        <td><label>Password : </label></td>
+        <td><input type="password" placeholder="Enter Password" name="password" required></td>
+    </tr>
+    </table>
+        <br><br>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="button" class="btn btn-secondary"> Cancel</button>
+        
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User</title>
+</head>
+<body>
+<img src="images/header.png" width="100%"/>
+<div class="table-data">
+    <h2>User</h2>
+        <%
+        if(userData.length!=0){
+        userData.forEach(function(data){
+        %>
+		<table>
+	<	tr>
+		<th>User</th>
+		<th>First Name</th>
+		<th>Last Name</th>
+		</tr>
+		<td><%=data.UserId %></td>
+		<td><%=data.FirstName %></td>
+		<td><%=data.LastName %></td>
+		</table>
+        <!-- <h4>
+            <h5><%=data.UserId %></h5>
+            <h5><%=data.FirstName %></h5>
+            <h5><%=data.LastName %></h5>
+        </h4> -->
+        <% }) %>
+        <% } else{ %>
+        <h4>
+            <span >No Data Found</span>
+        </h4>
+        <% } %>
+</div>
+
+<form method="post" action="/create">
+    <button type="submit" name="createOrder">Create</button>
+</form>
+</form>
+<form method="post" action="/view">
+    <button type="submit" name="viewOrder">View</button>
+</form>
+<form method="post" action="/cancel">
+    <button type="submit" name="cancelOrder">Cancel</button>
+</form>
+</body>
+</html>
