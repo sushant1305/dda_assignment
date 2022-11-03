@@ -204,6 +204,28 @@ app.post('/orderComplete', function(req,res){
                 console.log(result);
              // send records as a response
              if(result.rowsAffected.length === 1) {
+                var sp_cmd = "EXEC dbo.UDSP_Insert_ShipmentDetails "+details.orderId+","+details.sourceCity+","+details.destCity+",'2022-10-08 05:25:00',"+details.sourceCity+",'Int_City',"+details.weight+","+details.total+","+details.isFragile+",'2022-10-10 05:25:00',123,456,'2022-10-08 05:25:00',0,0,0,123,"+details.sourceCity+",'State';"
+                request.query(sp_cmd, function (err, recordset) {
+
+                    if (err) {
+                        console.log(err)
+                        displayError(res,err);
+                    }
+               var result = recordset.recordset[0].retCode==1
+               if (result) {
+                    console.log("Itemdetails")
+                    var id_cmd = "EXEC dbo.UDSP_Insert_ItemDetails "+details.orderId+","+details.itemName+",'',10,"+details.itemcategory+";"
+                    console.log(id_cmd)
+                    request.query(id_cmd, function (err, recordset) {
+                        console.log(recordset)
+                        if (err) {
+                            console.log(err)
+                            displayError(res,err);
+                        }
+               });
+                }
+
+        });
                  res.render('message', {
                      'data': {
                          'heading': 'Order placed successfully',
@@ -213,6 +235,8 @@ app.post('/orderComplete', function(req,res){
              }
 
          });
+         
+         
         
         
     });
