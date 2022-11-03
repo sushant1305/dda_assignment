@@ -134,7 +134,8 @@ app.post('/createOrder', function(req,res){
         details = req.body;
         details.orderId = Math.floor(Math.random() * 10000);
         details.isFragile = (details.isFragile == 'on');
-        console.log("Details")
+        //console.log("Details")
+        //
         console.log(details)
         var date = new Date().toISOString().replace(/T.*/,'').split('-').join('-')
         details.date = date
@@ -148,6 +149,7 @@ app.post('/createOrder', function(req,res){
             //need to inform of success
             var rate = recordset.recordset[0]['Rate/Kg/100km']
             var fragility = recordset.recordset[0].FragilityCharges
+
             var cost = parseInt(details.weight)*parseInt(rate);
             var total = cost * 0.18 + cost;
             if (details.isFragile){
@@ -167,28 +169,32 @@ app.post('/orderComplete', function(req,res){
             console.log(err);
             displayError(res, err)
         }
+        
+        var isActive = 1
         var details = JSON.parse(req.body.details)
         console.log("orderComplete")
         console.log(details)
         var request = new sql.Request();
-
         var cmd = "insert into [Order] values ("
         + details.orderId +","
         + "\'"+details.date+"\',"
-        + "\'"+loggedInUser+"\',"
+        + "\'"+"CUST_001"+"\'," //loggedInUser is not getting assigned
         + details.weight+","
         + details.length+","
         + details.breadth+","
         + details.height+","
         + "\'"+details.receiver+"\',"
-        + "\'"+details.isFragile+"\'"
+        + "\'"+details.isFragile+"\',"
+        + "\'"+isActive+"\'"
+        
         + ")";
+        
         console.log(cmd)
        //paymentid
         details.paymentId = Math.random().toString(36).slice(2);
         console.log("PaymentID")
         console.log(details.paymentId)
-         request.query(cmd, function (err, recordset) {
+        request.query(cmd, function (err, recordset) {
 
              if (err) {
                  console.log(err)
@@ -205,7 +211,10 @@ app.post('/orderComplete', function(req,res){
                      }
                  })
              }
+
          });
+        
+        
     });
 
 });
@@ -228,7 +237,7 @@ app.post('/view', function(req,res){
             }
             var result = '';
             console.log(recordset.recordset);
-            if(recordset.recordset.rowsAffected.length === 1) {
+            if(recordset) {
                 // send records as a response
                 res.render('orders', {ordersData: recordset.recordset})
             }

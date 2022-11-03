@@ -2,46 +2,60 @@
 <html lang="en">
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<style>
+        .newlabel {
+            margin-left: 80px;
+            min-width: 220px;
+            padding: 5px;
+            float: center;
+        }
+        button {
+            position: relative;
+            left:180px; 
+            top:50px;
+            }
+
+</style>
 </head>
 <body>
 <a href="/home"><img src="/images/header.png" width="100%"/></a>
 <form method="POST" action="/createUser">
     <h2>Registration</h2>
     <div class="container">
-        <label>First Name : </label>
+        <label class="newlabel">First Name : </label>
         <input type="text" placeholder="Enter First Name" name="firstName" value="test" required><br>
-        <label>Last Name : </label>
+        <label class="newlabel">Last Name : </label>
         <input type="text" placeholder="Enter Last Name" name="lastName" value="test" required><br>
-        <label>Contact Number : </label>
+        <label class="newlabel">Contact Number : </label>
         <input type="text" placeholder="Enter Contact Number" name="contactNumber" value="123456" required><br>
-        <label>Alternate Contact Number : </label>
+        <label class="newlabel">Alternate Contact Number : </label>
         <input type="text" placeholder="Enter Alternate Contact Number" name="aContactNumber" value="123456"><br>
-        <label>Address line 1 : </label>
+        <label class="newlabel">Address line 1 : </label>
         <input type="text" placeholder="Enter Address" name="address1" value="test" required><br>
-        <label>Address line 2 : </label>
+        <label class="newlabel">Address line 2 : </label>
         <input type="text" placeholder="Enter Address" name="address2" value="test" required><br>
-        <label>Address line 3 : </label>
+        <label class="newlabel">Address line 3 : </label>
         <input type="text" placeholder="Enter Address" name="address3" value="test" required><br>
-        <label>LandMark : </label>
+        <label class="newlabel">LandMark : </label>
         <input type="text" placeholder="Enter Landmark" name="landmark" value="test" ><br>
-        <label>City : </label>
+        <label class="newlabel">City : </label>
         <input type="text" placeholder="Enter City" name="cityName" value="test" ><br>
-        <label>District : </label>
+        <label class="newlabel">District : </label>
         <input type="text" placeholder="Enter District" name="district" value="test" ><br>
-        <label>State : </label>
+        <label class="newlabel">State : </label>
         <input type="text" placeholder="Enter State" name="stateName" value="test" ><br>
-        <label>ZipCode : </label>
+        <label class="newlabel">ZipCode : </label>
         <input type="number" placeholder="Enter Zip Code" name="zipcode" value="1234" ><br>
-        <label>Role : </label>
+        <label class="newlabel">Role : </label>
         <input id="user-role" list="roles" placeholder="Select Role" name="role" ><br>
         <datalist id="roles">
             <option value="Customer">
             <option value="Executive">
             <option value="Admin">
         </datalist>
-        <label>Password : </label>
+        <label class="newlabel">Password : </label>
         <input type="password" placeholder="Enter Password" name="password" value="test"><br>
-        <label>Email : </label>
+        <label class="newlabel">Email : </label>
         <input type="email" placeholder="Enter Email" name="email" value="test@a.com" ><br>
 
         <button type="submit" class="btn btn-primary">Register</button>
