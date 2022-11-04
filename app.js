@@ -129,7 +129,9 @@ app.post('/createUser', function (req, res) {
                     'data': {
                         'heading': 'Success',
                         'body': 'Successfully registered user ' + req.body.firstName + ' with user'
-                    }
+                    
+                    },
+                    userId:req.body.userId
                 })
             }
         });
@@ -431,7 +433,7 @@ app.get('/order/cancel/:orderId/:userId', function (req, res) {
         }
 
         var request = new sql.Request();
-        var cmd = "Update [Order] set isActive="+"\'"+false+"\'";
+        var cmd = "Update [Order] set isActive="+"\'"+false+"\' where OrderId=\'"+req.params.orderId+"\'";
 
         request.query(cmd, function (err, recordset) {
 
@@ -443,7 +445,7 @@ app.get('/order/cancel/:orderId/:userId', function (req, res) {
             console.log(recordset.recordset);
 
             // send records as a response
-            res.render('message', {data:{'heading':'Order cancelled successfully','body':'Package will not be delivered, refund will not be provided'},userId:req.params.userId})
+            res.render('message', {data:{'heading':'Order cancelled successfully','body':'Package will not be delivered, refund will be provided'},userId:req.params.userId})
 
         });
     });
@@ -500,7 +502,7 @@ function completeOrderWithPayment(cmd, details, request, res, heading, userId) {
                             displayError(res, err);
                         }
                         if (recordset.recordset[0].retCode == 1) {
-                            var pmt_cmd = "EXEC dbo.UDSP_Insert_PaymentDetails " + details.orderId + ", 'Credit Card','SBI','2022-10-08 05:25:00','Success',"+details.paymentId+";"
+                            var pmt_cmd = "EXEC dbo.UDSP_Insert_PaymentDetails " + details.orderId + ", 'Credit Card','SBI','2022-10-08 05:25:00','Success',\'"+details.paymentId+"\';"
                             console.log(pmt_cmd)
                             request.query(pmt_cmd, function (err, recordset) {
                                 if (err) {
