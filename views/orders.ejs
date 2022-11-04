@@ -5,8 +5,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-<a href="/home"><img src="/images/header.png" width="100%"/></a>
-<div class="table-data">
+<a href="/home1/<%=userId%>"><img src="/images/header.png" width="100%" style="margin-bottom:2%;max-height:15vh"/></a>
+<div class="table-data" style="margin:1% 5%">
     <h2 style="text-align: center;">Orders</h2>
     <table border="1" class="table table-striped">
         <tr>
@@ -23,13 +23,14 @@
             <th>Height</th>
             <th>IsFragile</th>
             <th>Edit</th>
-            <th>Delete</th>
+            <th>Cancel</th>
         </tr>
 
         <%
         if(ordersData.length!=0){
         var i=1;
         ordersData.forEach(function(data){
+            if(data.isActive){
         %>
         <tr>
             <td><%=i; %></td>
@@ -44,10 +45,10 @@
             <td><%=data['BreadthofItem (ft)'] %></td>
             <td><%=data['HeightofItem (ft)'] %></td>
             <td><%=data.IsFragile %></td>
-            <td><a href="/order/modify/<%=data.OrderId%>">Modify</a></td>
-            <td><a href="/order/cancel/<%=data.OrderId%>">Cancel</a></td>
+            <td><a href="/order/modify/<%=data.OrderId%>/<%=userId%>">Modify</a></td>
+            <td><a href="/order/cancel/<%=data.OrderId%>/<%=userId%>">Cancel</a></td>
         </tr>
-        <%  i++; }) %>
+        <%  i++; }}) %>
         <% } else{ %>
         <tr>
             <td colspan="7">No Data Found</td>

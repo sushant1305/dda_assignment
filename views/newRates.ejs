@@ -3,9 +3,45 @@
 <head>
     <title>Orders</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <style>
+
+        .new {
+            display: block;
+        }
+
+        .newlabel {
+            margin-left: 80px;
+            min-width: 200px;
+            padding: 5px;
+        }
+
+        .form-control {
+            width: 10%;
+            display: inline-block;
+        }
+
+        button {
+            position: relative;
+            left: 180px;
+            top: 50px;
+        }
+
+        form {
+            text-align: center;
+            margin: 5%
+        }
+
+        label {
+            text-align: left;
+        }
+        div {
+            margin: 1% 5%;
+        }
+    </style>
+
 </head>
 <body>
-<a href="/home"><img src="/images/header.png" width="100%"/></a>
+<a href="/home1/<%=userId%>"><img src="/images/header.png" width="100%" style="margin-bottom:2%;max-height:15vh"/></a>
 <div class="table-data">
     <h2 style="text-align: center;">Rate Add/Update</h2>
         <%
@@ -13,33 +49,56 @@
         rates.forEach(function(data){
         %>
         <form method="post" action="/rate/modify">
+            <input type="text" name="userId" value=<%= userId %> style="display:none">
+        <div class="form-group">
+            <div class="form-group">
             <label class="newlabel">Item Category : </label>
             <label class="newlabel"><%=data['ItemCategory']%></label><br>
-            <input type="text" value=<%=data['ItemCategory']%> name="itemCategory" style="display:none">
+            <input type="text" class="form-control" value=<%=data['ItemCategory']%> name="itemCategory" style="display:none">
+            </div>
+            <div class="form-group">
             <label class="newlabel">SGST Percent : </label>
-            <input type="number" value=<%=data['SGST Percent']%> name="sgstPercent"><br>
+            <input type="number" class="form-control" value=<%=data['SGST Percent']%> name="sgstPercent"><br>
+            </div>
+            <div class="form-group">
             <label class="newlabel">CGST Percent : </label>
-            <input type="number" value=<%=data['CGST Percent']%> name="cgstPercent"><br>
+            <input type="number" class="form-control" value=<%=data['CGST Percent']%> name="cgstPercent"><br>
+            </div>
+            <div class="form-group">
             <label class="newlabel">Rate / KG / 100KM  : </label>
-            <input type="number" value=<%=data['Rate/Kg/100km']%> name="rateKgKm"><br>
+            <input type="number" class="form-control" value=<%=data['Rate/Kg/100km']%> name="rateKgKm"><br>
+            </div>
+            <div class="form-group">
             <label class="newlabel">Fragility Charges : </label>
-            <input type="text" value=<%=data['FragilityCharges']%> name="fragilityCharges"><br>
+            <input type="text" class="form-control" value=<%=data['FragilityCharges']%> name="fragilityCharges"><br>
+            </div>
             <button type="submit">Modify</button>
         </form>
         <% }) %>
         <% } else{ %>
     <form method="post" action="/rate/new">
+        <input type="text" name="userId" value=<%= userId %> style="display:none">
+<div class="form-group">
         <label class="newlabel">SGST Percent : </label>
-        <input type="number" name="sgstPercent"><br>
+        <input type="number" class="form-control" name="sgstPercent"><br>
+</div>
+        <div class="form-group">
         <label class="newlabel">CGST Percent : </label>
-        <input type="number" name="cgstPercent"><br>
+        <input type="number" class="form-control" name="cgstPercent"><br>
+        </div>
+        <div class="form-group">
         <label class="newlabel">Rate / KG / 100KM  : </label>
-        <input type="number" name="rateKgKm"><br>
+        <input type="number" class="form-control" name="rateKgKm"><br>
+        </div>
+        <div class="form-group">
         <label class="newlabel">Item Category : </label>
-        <input type="text" name="itemCategory"><br>
+        <input type="text" class="form-control" name="itemCategory"><br>
+        </div>
+        <div class="form-group">
         <label class="newlabel">Fragility Charges : </label>
-        <input type="number" name="fragilityCharges"><br>
-        <button type="submit">Add Rate</button>
+        <input type="number" class="form-control" name="fragilityCharges"><br>
+        </div>
+        <center><button class="btn btn-warning" type="submit">Add Rate</button></center>
     </form>
         <% } %>
 </div>

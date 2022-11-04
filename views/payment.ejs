@@ -14,11 +14,11 @@
         left:230px;
         top:50px;
 		}
-        
+
     </style>
 </head>
 <body>
-<a href="/home"><img src="/images/header.png" width="100%"/></a>
+<a href="/home1/<%=userId%>"><img src="/images/header.png" width="100%" style="margin-bottom:2%;max-height:15vh"/></a>
 <form method="post" action="/orderComplete">
 
 <h2>Payment</h2>
@@ -26,6 +26,7 @@
 
 <div class="bootstrap">
     <form>
+        <input type="text" name="userId" value=<%= userId %> style="display:none">
         <div class="row mb-3">
           <label for="orderid" class="col-sm-2 col-form-label">Order Id:</label>
           <div class="col-sm-10">
@@ -61,12 +62,10 @@
             </div>
           </div>
         </fieldset>
-
-
-</div>
 <input type="text" name="details" style="display: none;" value=<%= JSON.stringify(details) %>></input>
 <button type="submit" name="createOrder" class="btn btn-primary">Make Payment</button>
 <!-- <button type="submit" name="cancelorder" class="btn btn-primary">Cancel</button> -->
 </form>
+</div>
 </body>
 </html>

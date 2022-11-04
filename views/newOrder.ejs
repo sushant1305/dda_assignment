@@ -2,106 +2,178 @@
 <html lang="en">
 <head>
     <title>Orders</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <style>
-    
+
         .new {
-        display:block;
+            display: block;
         }
+
+        .form-control {
+            width: 10%;
+            display: inline-block;
+        }
+
         .newlabel {
             margin-left: 80px;
             min-width: 200px;
             padding: 5px;
-            float: center;
         }
+
         button {
             position: relative;
-            left:180px; 
-            top:50px;
-            }
-        
+            left: 180px;
+            top: 50px;
+        }
+
+        form {
+            text-align: center;
+            margin: 5%
+        }
+
+        .table-data {
+            text-align: center;
+
+        }
+
+        .form-text {
+            margin-left: -90px;
+        }
+    </style>
+
     </style>
 </head>
 <body>
-<a href="/home"><img src="/images/header.png" width="100%"/></a>
-
-    <%
-    if(undefined !== ordersData && ordersData.length!=0){
-        ordersData.forEach(function(data){
-    %>
+<a href="/home1/<%= obj.userId %>"><img src="/images/header.png" width="100%" style="margin-bottom:2%;max-height:15vh"/></a>
+<center><h2>Order Add/Modify</h2></center>
+<%
+if(undefined !== ordersData && ordersData.length != 0){
+ordersData.forEach(function(data){
+%>
     <form method="post" action="/modifyOrder">
-    <input type="text" name="userId" value=<%= obj.userId%> style="display:none">
-    <label class="newlabel">Recipient : </label>
-    <input type="text"  name="receiver" value=<%=data.RecipientId %> required><br>
-    <label class="newlabel">ItemName : </label>
-    <input type="text" name="itemName" value=<%=data.ItemName %> required><br>
-    <label class="newlabel">ItemCategory : </label>
-    <input id="itemcategory" list="itemcategories"  name="itemcategory" value=<%=data.ItemCategory %> required><br>
-    <datalist id="itemcategories">
-        <option value="Document">
-        <option value="Electronics">
-        <option value="FMCG">
-        <option value="Household">
-        <option value="Mobility">
-        <option value="Other">
-    </datalist>
-    <label class="newlabel">Destination City : </label>
-    <input type="text"  name="destCity" value=<%=data.DestinationCity %> required><br>
-    <label class="newlabel">Source City : </label>
-    <input type="text"  name="sourceCity" value=<%=data.SourceCity %> required><br>
-    <label class="newlabel">Weight of Item (Kg) : </label>
-    <input type="number"  name="weight" value=<%=data['WeightofItem (in Kg)'] %> required><br>
-    <label class="newlabel">Length of Item (ft) : </label>
-    <input type="number"  name="length" value=<%=data['LengthofItem (ft)'] %> required><br>
-    <label class="newlabel">Breadth of Item (ft) : </label>
-    <input type="number"  name="breadth" value=<%=data['BreadthofItem (ft)'] %> required><br>
-    <label class="newlabel">Height of Item (ft) : </label>
-    <input type="number"  name="height" class="newlabel" value=<%=data['HeightofItem (ft)'] %> required><br>
-    <label for="isFragile" class="newlabel">Fragile</label>
-    <input type="radio" id="isFragile" name="isFragile" value=value=<%=data.IsFragile %>><br>
-    <button type="submit">Modify Order</button>
+        <input type="text" name="userId" style="display:none" value=<%= obj.userId %>>
+        <input type="text" name="orderId" style="display:none" value=<%= obj.orderId %>>
+        <div class="form-group">
+            <label class="newlabel">Recipient : </label>
+            <input type="text" class="form-control" name="receiver" value=<%= data.RecipientId %> aria-describedby="receiverHelp" required><br>
+            <small id="receiverHelp" class="form-text text-muted">Only this field can be modified.</small>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">ItemName : </label>
+            <input type="text" readonly class="form-control" name="itemName" value=<%= data.ItemName %> required><br>
+
+        </div>
+        <div class="form-group">
+            <label class="newlabel">ItemCategory : </label>
+            <input id="itemcategory" readonly class="form-control" list="itemcategories" name="itemcategory"
+                   value=<%= data.ItemCategory %> required><br>
+            <datalist id="itemcategories">
+                <option value="Document">
+                <option value="Electronics">
+                <option value="FMCG">
+                <option value="Household">
+                <option value="Mobility">
+                <option value="Other">
+            </datalist>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Destination City : </label>
+            <input type="text" class="form-control" name="destCity" value=<%= data.DestinationCity %> aria-describedby="destinationHelp" required><br>
+            <small id="destinationHelp" class="form-text text-muted">Only this field can be modified.</small>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Source City : </label>
+            <input type="text" class="form-control" name="sourceCity" value=<%= data.SourceCity %> aria-describedby="sourceHelp" required><br>
+            <small id="sourceHelp" class="form-text text-muted">Only this field can be modified.</small>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Weight of Item (Kg) : </label>
+            <input type="number" readonly class="form-control" name="weight"
+                   value=<%= data['WeightofItem (in Kg)'] %> required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Length of Item (ft) : </label>
+            <input type="number" readonly class="form-control" name="length" value=<%= data['LengthofItem (ft)'] %> required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Breadth of Item (ft) : </label>
+            <input type="number" readonly class="form-control" name="breadth"
+                   value=<%= data['BreadthofItem (ft)'] %> required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Height of Item (ft) : </label>
+            <input type="number" readonly class="form-control" name="height" class="newlabel"
+                   value=<%= data['HeightofItem (ft)'] %> required><br>
+        </div>
+        <div class="form-group">
+            <label for="isFragile" class="newlabel">Fragile</label>
+            <input type="radio" id="isFragile" name="isFragile" aria-describedby="fragileHelp"><br>
+            <small id="fragileHelp" class="form-text text-muted">Only this field can be modified.</small>
+        </div>
+        <button type="submit">Modify Order</button>
     </form>
-    <%
-    })
-    } else {
-    %>
+<%
+})
+} else {
+%>
     <form method="post" action="/createOrder">
-    <input type="text" name="userId" value=<%= obj.userId%> style="display:none">
-    <label class="newlabel">Recipient : </label>
-    <input type="text"  name="receiver" required><br>
-    <label class="newlabel">ItemName : </label>
-    <input type="text" name="itemName"  required><br>
-    <label class="newlabel">ItemCategory : </label>
-    <input id="itemcategory" list="itemcategories"  name="itemcategory" required><br>
-    <datalist id="itemcategories">
-        <option value="Document">
-        <option value="Electronics">
-        <option value="FMCG">
-        <option value="Household">
-        <option value="Mobility">
-        <option value="Other">
-    </datalist>
-    <label class="newlabel">Destination City : </label>
-    <input type="text"  name="destCity" required><br>
-    <label class="newlabel">Source City : </label>
-    <input type="text"  name="sourceCity" required><br>
-    <label class="newlabel">Weight of Item (Kg) : </label>
-    <input type="number"  name="weight" required><br>
-    <label class="newlabel">Length of Item (ft) : </label>
-    <input type="number"  name="length"  required><br>
-    <label class="newlabel">Breadth of Item (ft) : </label>
-    <input type="number"  name="breadth" required><br>
-    <label class="newlabel">Height of Item (ft) : </label>
-    <input type="number"  name="height" required><br>
-    <label for="isFragile" class="newlabel">Fragile</label>
-    <input type="radio" id="isFragile" name="isFragile" ><br>
-    <!-- <input type="textbox" id="isFragile" name="isFragile" value=1 ><br> -->
-    <!-- <label for="isActive" class="newlabel">Active</label>
-    <input type="textbox" id="isActive" name="isActive" value=1 ><br> -->
-    <button type="submit" class="btn btn-primary">Create Order</button>
+        <input type="text" name="userId" value=<%= obj.userId %> style="display:none">
+        <div class="form-group">
+            <label class="newlabel">Recipient : </label>
+            <input type="text" class="form-control" name="receiver" value="CUST_004" required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">ItemName : </label>
+            <input type="text" class="form-control" name="itemName" value="test" required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">ItemCategory : </label>
+            <input id="itemcategory" class="form-control" list="itemcategories" name="itemcategory" value="Document"
+                   required><br>
+            <datalist id="itemcategories">
+                <option value="Document">
+                <option value="Electronics">
+                <option value="FMCG">
+                <option value="Household">
+                <option value="Mobility">
+                <option value="Other">
+            </datalist>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Destination City : </label>
+            <input type="text" class="form-control" name="destCity" value="test" required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Source City : </label>
+            <input type="text" class="form-control" name="sourceCity" value="test" required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Weight of Item (Kg) : </label>
+            <input type="number" class="form-control" name="weight" value=2 required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Length of Item (ft) : </label>
+            <input type="number" class="form-control" name="length" value=2 required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Breadth of Item (ft) : </label>
+            <input type="number" class="form-control" name="breadth" value=2 required><br>
+        </div>
+        <div class="form-group">
+            <label class="newlabel">Height of Item (ft) : </label>
+            <input type="number" class="form-control" name="height" value=2 required><br>
+        </div>
+        <div class="form-group">
+            <label for="isFragile" class="newlabel">Fragile</label>
+            <input type="radio" id="isFragile" name="isFragile"><br>
+        </div>
+        <center>
+            <button type="submit" class="btn btn-primary">Create Order</button>
+        </center>
     </form>
-    <%
-    }
-    %>
+<%
+}
+%>
 </body>
 </html>

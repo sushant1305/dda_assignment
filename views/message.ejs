@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 </head>
 <body>
-<a href="/home"><img src="/images/header.png" width="100%"/></a>
-    <h2><%=data['heading'] %></h2>
+<a href="/home1/<%=userId%>"><img src="/images/header.png" width="100%" style="margin-bottom:2%;max-height:15vh"/></a>
+<div class="jumbotron">
+    <center><h2 class="display-6"><%= data['heading'] %></h2></center>
+    <hr class="my-4">
+    <center>
     <div class="container">
-        <h4><%=data['body'] %></h4>
+        <h4 class="lead"><%= data['body'] %></h4>
     </div>
+    </center>
+</div>
 </body>
 </html>
