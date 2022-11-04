@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
+<a href="/home"><img src="/images/header.png" width="100%"/></a>
+<div class="table-data">
+    <h2 style="text-align: center;">Rates</h2>
+    <table id="rates" border="1" class="table table-striped">
+        <tr>
+            <th>S.N</th>
+            <th>SGST Percent</th>
+            <th>CGST Percent</th>
+            <th>Rate/Kg/100KM</th>
+            <th>ItemCategory</th>
+            <th>Fragility Charges</th>
+            <th>Modify</th>
+            <th>Delete</th>
+        </tr>
+
+        <%
+        if(rates.length!=0){
+        var i=1;
+        rates.forEach(function(data){
+        %>
+        <tr>
+            <td><%=i; %></td>
+            <td><%=data['SGST Percent'] %></td>
+            <td><%=data['CGST Percent'] %></td>
+            <td><%=data['Rate/Kg/100km'] %></td>
+            <td><%=data.ItemCategory %></td>
+            <td><%=data.FragilityCharges %></td>
+            <td><a href="/rate/modify/<%=data.ItemCategory%>">Modify</a></td>
+            <td><a href="/rate/delete/<%=data.ItemCategory%>">Delete</a></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+        <tr>
+            <td colspan="7">No Data Found</td>
+        </tr>
+        <% } %>
+    </table>
+</div>
+</body>
+</html>

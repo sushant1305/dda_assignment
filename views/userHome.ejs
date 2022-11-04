@@ -32,12 +32,24 @@
 </div>
 
 <form method="post" action="/create">
+    <input type="text"  name="userId" value=<%= userData[0].UserId %> style="display:none">
     <button type="submit" class="btn btn-secondary">Create New Order</button>
 </form>
 <br>
 </form>
 <form method="post" action="/view">
+    <input type="text"  name="userId" value=<%= userData[0].UserId %> style="display:none">
     <button type="submit" class="btn btn-secondary">View Your Orders</button>
+</form>
+<br>
+<form method="post" action="/viewRates">
+    <input type="text"  name="userId" value=<%= userData[0].UserId %> style="display:none">
+    <button type="submit" class="btn btn-secondary">View Rate List</button>
+</form>
+<br>
+<form method="post" action="/addRate">
+    <input type="text"  name="userId" value=<%= userData[0].UserId %> style="display:none">
+    <button type="submit" class="btn btn-secondary">Add New Rate Item</button>
 </form>
 </body>
 </html>

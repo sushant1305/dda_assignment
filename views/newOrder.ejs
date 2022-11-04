@@ -30,6 +30,7 @@
         ordersData.forEach(function(data){
     %>
     <form method="post" action="/modifyOrder">
+    <input type="text" name="userId" value=<%= obj.userId%> style="display:none">
     <label class="newlabel">Recipient : </label>
     <input type="text"  name="receiver" value=<%=data.RecipientId %> required><br>
     <label class="newlabel">ItemName : </label>
@@ -65,6 +66,7 @@
     } else {
     %>
     <form method="post" action="/createOrder">
+    <input type="text" name="userId" value=<%= obj.userId%> style="display:none">
     <label class="newlabel">Recipient : </label>
     <input type="text"  name="receiver" required><br>
     <label class="newlabel">ItemName : </label>
