@@ -64,7 +64,7 @@ app.post('/home1', function (req, res) {
         }
 
         var request = new sql.Request();
-        request.query("Select * from [User] where UserId=" + "\'" + username + "\';", function (err, recordset) {
+        request.query("Select * from [User] where UserId=" + "\'" + username + "\' and Password=\'"+ password +"\';", function (err, recordset) {
 
             if (err) console.log(err)
             var result = recordset.recordset.length == 1;
@@ -131,7 +131,7 @@ app.post('/createUser', function (req, res) {
                         'body': 'Successfully registered user ' + req.body.firstName + ' with user'
                     
                     },
-                    userId:req.body.userId
+                    userId:userId
                 })
             }
         });
